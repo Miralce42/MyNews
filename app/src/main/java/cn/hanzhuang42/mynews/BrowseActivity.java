@@ -16,7 +16,6 @@ public class BrowseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
         WebView webView = findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
     }

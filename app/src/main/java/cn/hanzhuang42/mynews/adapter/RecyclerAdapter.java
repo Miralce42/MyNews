@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import cn.hanzhuang42.mynews.BrowseActivity;
@@ -23,6 +25,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.NewsVi
 
     private List<News> mNewsList;
     private Context mContext = null;
+
+    public RecyclerAdapter(List<News> newsList){
+        mNewsList = newsList;
+    }
 
     class NewsViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,15 +54,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.NewsVi
         View childView = inflater.inflate(R.layout.item, parent, false);
         final NewsViewHolder holder = new NewsViewHolder(childView);
 
-
         mContext = parent.getContext();
         holder.newsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                int position = holder.getAdapterPosition();
-//                News news = mNewsList.get(position);
+                int position = holder.getAdapterPosition();
+                News news = mNewsList.get(position);
                 Intent intent = new Intent(mContext, BrowseActivity.class);
-                intent.putExtra("url","www.baidu.com");
+                //由于该地址无法显示，所以加载其他指定网址
+                intent.putExtra("url",news.getPage_url());
                 mContext.startActivity(intent);
             }
         });
@@ -66,14 +72,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.NewsVi
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        //TODO
-        //News news = mNewsList.get(position);
+        News news = mNewsList.get(position);
+        String title = news.getTitle();
+        String content = title + title;
+        String thumb_url = news.getThumb_url();
+        Glide.with(mContext)
+                .load(thumb_url)
+                .into(holder.newsImg);
+        holder.newsTitle.setText(title);
+        holder.newsContent.setText(content);
     }
 
     @Override
     public int getItemCount() {
-        return 15;
-        //return mNewsList.size();
+        return mNewsList.size();
     }
 
 }

@@ -19,18 +19,17 @@
         app:tabMode="scrollable"
         app:tabGravity="fill"/>
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+        <cn.hanzhuang42.mynews.view.VerticalSwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content">
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+        </cn.hanzhuang42.mynews.view.VerticalSwipeRefreshLayout>
+
 
 </LinearLayout>

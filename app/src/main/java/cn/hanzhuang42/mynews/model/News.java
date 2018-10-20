@@ -1,7 +1,8 @@
 package cn.hanzhuang42.mynews.model;
 
-//新闻类
-public class News {
+import org.litepal.crud.DataSupport;
+
+public class News extends DataSupport {
     private int id;
     private String title;
     private String category;
